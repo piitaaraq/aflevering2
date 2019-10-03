@@ -14,8 +14,9 @@ int main() {
     //5, j: ophold
     //6, j: totalomkostninger for hver deltager
     //7, j: difference ift gennemsnittet
-    int deltagere[7][15] = {
-        {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15}
+    int deltagere[8][15] = {
+        {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15},
+        {100, 200, 300, 400, 500, 600, 700, 800, 900, 1000, 1100, 1200, 1300, 1400, 1500}
     };
     int i, j;
     
@@ -23,21 +24,24 @@ int main() {
     printf("Deltagernes omkostninger er som følger:\n");
     printf("Deltager\t Madomkostninger\t Rejseomkostninger\t Ophold\t\t Total\t\t Difference\n");
     
-    for(j = 0; j < 15; j++) {
-        for(i = 0; i < 7; i++) {
-            printf("%d\t %d\t %d\t %d\t %d\t %d\n", 
-            deltagere[0][j],
-            deltagere[1][j],
-            deltagere[3][j], 
-            deltagere[5][j], 
-            deltagere[6][j], 
-            deltagere[7][j] );
+        for(j = 0; j < 15; j++) {
+            printf("%03d\t\t DKK%5d\t\t DKK%5d\t\t DKK%5d\t DKK%5d\t DKK%5d\n",
+                   deltagere[0][j],
+                   deltagere[1][j],
+                   deltagere[3][j],
+                   deltagere[5][j],
+                   deltagere[6][j],
+                   deltagere[7][j]);
         }
-    }
     //brugeren bedes om at indtaste oplysningerne
-    // printf("Indast deltagernes omkostninger.");
+    printf("Indtast deltagernes omkostninger.\n");
 
+    //indtast madomkostninger i dkk
+    printf("Madomkostninger for deltager %03d i DKK. Skriv 0 hvis omkostningerne er i Euro: ", deltagere[0][0]);
+    scanf("%d", &deltagere[0][1]);
     //indtast madomkostninger i eur
+    printf("Madomkostninger for deltager %03d i EUR. Skriv 0 hvis omkostningerne er i DKK: ", deltagere[0][0]);
+    scanf("%d", &deltagere[0][2]);
 
     //indtast rejseomkostninger i dkk. Hvis billetten er købt i eur,
     //skrives der nul
