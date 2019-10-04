@@ -14,18 +14,19 @@ int main() {
     //5, j: ophold
     //6, j: totalomkostninger for hver deltager
     //7, j: difference ift gennemsnittet
-    int deltagere[8][15] = {
+    float deltagere[8][15] = {
         {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15},
         {100, 200, 300, 400, 500, 600, 700, 800, 900, 1000, 1100, 1200, 1300, 1400, 1500}
     };
-    int i, j;
+    float totalsum, gennemsnit;
+    int i, j, k;
     
     //vis de initielle værdier under hver deltager
-    printf("Deltagernes omkostninger er som følger:\n");
+    printf("Deltagernes omkostninger vil blive vist i dette layout:\n");
     printf("Deltager\t Madomkostninger\t Rejseomkostninger\t Ophold\t\t Total\t\t Difference\n");
     
         for(j = 0; j < 15; j++) {
-            printf("%03d\t\t DKK%5d\t\t DKK%5d\t\t DKK%5d\t DKK%5d\t DKK%5d\n",
+            printf("%03.0f\t\t DKK%5.2f\t\t DKK%5.2f\t\t DKK%5.2f\t DKK%5.2f\t DKK%5.2f\n",
                    deltagere[0][j],
                    deltagere[1][j],
                    deltagere[3][j],
@@ -35,24 +36,65 @@ int main() {
         }
     //brugeren bedes om at indtaste oplysningerne
     printf("Indtast deltagernes omkostninger.\n");
+    
+    //loop gennem alle deltagere og indtast oplysninger
+    for(i=0;i<15;i++){
+        //indtast madomkostninger i dkk
+        printf("Madomkostninger for deltager %03.0f i DKK. Skriv 0 hvis omkostningerne er i Euro: ", deltagere[0][i]);
+        scanf("%f", &deltagere[1][i]);
+        //indtast madomkostninger i eur
+        if(deltagere[1][i] == 0) {
+            printf("Madomkostninger for deltager %03.0f i EUR: ", deltagere[0][i]);
+            scanf("%f", &deltagere[2][i]);
+        }
 
-    //indtast madomkostninger i dkk
-    printf("Madomkostninger for deltager %03d i DKK. Skriv 0 hvis omkostningerne er i Euro: ", deltagere[0][0]);
-    scanf("%d", &deltagere[0][1]);
-    //indtast madomkostninger i eur
-    printf("Madomkostninger for deltager %03d i EUR. Skriv 0 hvis omkostningerne er i DKK: ", deltagere[0][0]);
-    scanf("%d", &deltagere[0][2]);
+        //indtast rejseomkostninger i dkk. Hvis billetten er købt i eur,
+        //skrives der nul
+        printf("Rejseomkostninger for deltager %03.0f i DKK. Skriv 0 hvis billetterne er købt i Euro: ", deltagere[0][i]);
+        scanf("%f", &deltagere[3][i]);
 
-    //indtast rejseomkostninger i dkk. Hvis billetten er købt i eur,
-    //skrives der nul
+        //rejseomkostninger i eur. Hvis billetten er købt i dkk,
+        //skrives der nul
+        if(deltagere[3][i] == 0) {
+            printf("Rejseomkostninger for deltager %03.0f i EUR: ", deltagere[0][i]);
+            scanf("%f", &deltagere[4][i]);
+        }
 
-    //rejseomkostninger i eur. Hvis billetten er købt i dkk,
-    //skrives der nul
+        //indtast deltagerens omkostninger til ophold
+        printf("Omkostninger til ophold for deltager %03.0f i DKK: ", deltagere[0][i]);
+        scanf("%f", &deltagere[5][i]);
 
-    //beregning af hver deltagers omkostninger,
-    //eur beløb omregnes til dkk
+        //Beregning af hver deltagers omkostninger,
+        //eur beløb omregnes til dkk
 
-    //beregning af de samlede omkostninger og fordeling
+        //omregning af EUR madkomkostninger til DKK
+        if(deltagere[1][i] == 0) {
+            deltagere[1][i] = deltagere[2][i] * EURO;
+        };
+
+        //omregning af EUR rejseomkostninger til DKK
+        if(deltagere[3][i] == 0) {
+            deltagere[3][i] = deltagere[4][i] * EURO;
+        };
+
+        //hver deltagers samlede udgifter
+        deltagere[6][i] = deltagere[1][i] + deltagere[3][i] + deltagere[5][i];  
+
+        //vis de indtastede værdier under hver deltager
+        printf("Deltagerens omkostninger er som følger:\n");
+        printf("Deltager\t Madomkostninger\t Rejseomkostninger\t Ophold\t\t Total\n");
+        printf("%03.0f\t\t DKK%8.2f\t\t DKK%8.2f\t\t DKK%8.2f\t DKK%8.2f\n", 
+        deltagere[0][i], 
+        deltagere[1][i],
+        deltagere[3][i], 
+        deltagere[5][i],
+        deltagere[6][i] 
+        );
+        //beregning af de samlede omkostninger og fordeling
+        totalsum = totalsum + deltagere[6][i];
+        printf("Det totale regnskab indtil videre: %8.2f\n", totalsum);
+
+    }
 
     //beregning af hvad differencen er for hver deltager
     return 0;
