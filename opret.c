@@ -15,30 +15,39 @@ int main() {
     //6, j: totalomkostninger for hver deltager
     //7, j: difference ift gennemsnittet
     float deltagere[8][15] = {
-        {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15},
-        {100, 200, 300, 400, 500, 600, 700, 800, 900, 1000, 1100, 1200, 1300, 1400, 1500}
+        {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15}
     };
     float totalsum, gennemsnit;
     int i, j, k;
+    char m='j';
     
     //vis de initielle værdier under hver deltager
     printf("Deltagernes omkostninger vil blive vist i dette layout:\n");
-    printf("Deltager\t Madomkostninger\t Rejseomkostninger\t Ophold\t\t Total\t\t Difference\n");
+    printf("Deltager\t | Madomkostninger\t | Rejseomkostninger\t | Ophold\t | Total\t | Difference\n");
     
-        for(j = 0; j < 15; j++) {
-            printf("%03.0f\t\t DKK%5.2f\t\t DKK%5.2f\t\t DKK%5.2f\t DKK%5.2f\t DKK%5.2f\n",
-                   deltagere[0][j],
-                   deltagere[1][j],
-                   deltagere[3][j],
-                   deltagere[5][j],
-                   deltagere[6][j],
-                   deltagere[7][j]);
-        }
-    //brugeren bedes om at indtaste oplysningerne
-    printf("Indtast deltagernes omkostninger.\n");
+    for(j = 0; j < 15; j++) {
+        printf("%03.0f\t\t | DKK%5.2f\t\t | DKK%5.2f\t\t | DKK%5.2f\t | DKK%5.2f\t | DKK%5.2f\n",
+                deltagere[0][j],
+                deltagere[1][j],
+                deltagere[3][j],
+                deltagere[5][j],
+                deltagere[6][j],
+                deltagere[7][j]);
+    }
+    printf("Vil du indtaste oplysninger om en eller flere deltagere?\n");
+    printf("j/n: ");
+    scanf("%c", &m);
+    do {
+        printf("Hvilken deltagers (1-15) oplysninger vil du taste ind?: ");
+        scanf("%d", &i);
+        i = i -1;
+        //brugeren bedes om at indtaste oplysningerne
+        printf("Indtast deltagerens omkostninger.\n");
     
-    //loop gennem alle deltagere og indtast oplysninger
-    for(i=0;i<15;i++){
+        //loop gennem alle deltagere og indtast oplysninger
+        //denne metode låser indtasteren til at udføre opgaven på en gang
+        // for(i=0;i<15;i++){
+            
         //indtast madomkostninger i dkk
         printf("Madomkostninger for deltager %03.0f i DKK. Skriv 0 hvis omkostningerne er i Euro: ", deltagere[0][i]);
         scanf("%f", &deltagere[1][i]);
@@ -94,7 +103,10 @@ int main() {
         totalsum = totalsum + deltagere[6][i];
         printf("Det totale regnskab indtil videre: %8.2f\n", totalsum);
 
+        printf("Vil du indtaste oplysninger om en eller flere deltagere?\n");
+        printf("j/n: ");
     }
+    while(scanf("%c\n", &m)!='n'); 
 
     //beregning af hvad differencen er for hver deltager
     return 0;
