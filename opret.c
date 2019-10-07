@@ -37,7 +37,13 @@ int main() {
     printf("Vil du indtaste oplysninger om en eller flere deltagere?\n");
     printf("j/n: ");
     scanf("%c", &m);
-    do {
+    
+    while(m!='n') {
+
+        if(m=='n'){
+            break;
+        }
+        
         printf("Hvilken deltagers (1-15) oplysninger vil du taste ind?: ");
         scanf("%d", &i);
         i = i -1;
@@ -103,10 +109,11 @@ int main() {
         totalsum = totalsum + deltagere[6][i];
         printf("Det totale regnskab indtil videre: %8.2f\n", totalsum);
 
-        printf("Vil du indtaste oplysninger om en eller flere deltagere?\n");
-        printf("j/n: ");
-    }
-    while(scanf("%c\n", &m)!='n'); 
+    };
+
+    printf("Ude af indtastningsmodulet. Tryk på en tast for at afslutte.");
+    char afslut;
+    scanf("%c",&afslut);
 
     //beregning af hvad differencen er for hver deltager
     return 0;
