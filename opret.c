@@ -126,7 +126,6 @@ int main()
 
        // visning af alle omkostninger
        printf("Overblik over alle omkostninger:\n");
-       printf("Deltagernes omkostninger vil blive vist i dette layout:\n");
        printf("Deltager\t | Madomkostninger\t | Rejseomkostninger\t | Ophold\t | "
               "Total\t | Difference\n");
        for (j = 0; j < 15; j++)
