@@ -4,7 +4,7 @@
 const float EURO = 7.47;
 void indtaster(float deltagere[][15], int i, int j, char m)
 {
-       // vi bruger et enketl to-dimensionelt array for at holde koden "ren"
+       // vi bruger et enkelt to-dimensionelt array for at holde koden "ren"
        // vores array har to pladser til indtastning af rejseudgifter, da
        // de kan både være dkk og eur. Hvis dkk indekset er tom, bliver det regnet
        // om. layout for array: 0, j: deltager id 1, j: madomkostninger i dkk 2, j:
